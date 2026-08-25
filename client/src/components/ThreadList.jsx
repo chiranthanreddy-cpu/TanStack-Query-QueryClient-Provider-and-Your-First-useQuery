@@ -2,12 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { getThreads } from "../services/threads.service";
 
 export default function ThreadList() {
-  const { data, isPending, isError, error } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ["threads"],
     queryFn: getThreads,
   });
 
-  if (isPending) return <p>Loading threads…</p>;
+  if (isLoading) return <p>Loading threads…</p>;
   if (isError) return <p className="err">Error: {error.message}</p>;
 
   return (
